@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/tag-for-tamago-js/static/css/main.d1b05096.chunk.css",
+    "main.js": "/tag-for-tamago-js/static/js/main.e706697d.chunk.js",
+    "main.js.map": "/tag-for-tamago-js/static/js/main.e706697d.chunk.js.map",
+    "runtime-main.js": "/tag-for-tamago-js/static/js/runtime-main.4dd731f5.js",
+    "runtime-main.js.map": "/tag-for-tamago-js/static/js/runtime-main.4dd731f5.js.map",
+    "static/js/2.c82389e0.chunk.js": "/tag-for-tamago-js/static/js/2.c82389e0.chunk.js",
+    "static/js/2.c82389e0.chunk.js.map": "/tag-for-tamago-js/static/js/2.c82389e0.chunk.js.map",
+    "index.html": "/tag-for-tamago-js/index.html",
+    "precache-manifest.caa487ae82e6b423530834e9f98dcb58.js": "/tag-for-tamago-js/precache-manifest.caa487ae82e6b423530834e9f98dcb58.js",
+    "service-worker.js": "/tag-for-tamago-js/service-worker.js",
+    "static/css/main.d1b05096.chunk.css.map": "/tag-for-tamago-js/static/css/main.d1b05096.chunk.css.map",
+    "static/js/2.c82389e0.chunk.js.LICENSE": "/tag-for-tamago-js/static/js/2.c82389e0.chunk.js.LICENSE",
+    "static/media/logo.svg": "/tag-for-tamago-js/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4dd731f5.js",
+    "static/js/2.c82389e0.chunk.js",
+    "static/css/main.d1b05096.chunk.css",
+    "static/js/main.e706697d.chunk.js"
+  ]
+}
