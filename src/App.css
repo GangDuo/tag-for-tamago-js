@@ -1,1 +1,10 @@
 @page { size: A4 }
+
+/* CoreUI Icons Set */
+@import '~@coreui/icons/css/all.min.css';
+
+.c-icon-4xl {
+    width: 4rem;
+    height: 4rem;
+    font-size: 4rem;
+}
