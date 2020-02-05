@@ -8,7 +8,7 @@ function TamagoSticker(props) {
     <>
       <style jsx="true">{`
 .mv-info {
-  font-size: 20px;
+  font-size: 30px;
 }
       `}</style>
       <div className="row text-center">
