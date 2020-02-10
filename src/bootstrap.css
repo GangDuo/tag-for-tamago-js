@@ -27,6 +27,18 @@
     -ms-flex-item-align: center!important;
     align-self: center!important;
 }
+.mt-1, .my-1 {
+    margin-top: .25rem!important;
+}
+.mt-2, .my-2 {
+    margin-top: .5rem!important;
+}
+.mt-3, .my-3 {
+    margin-top: 1rem!important;
+}
+.mt-4, .my-4 {
+    margin-top: 1.5rem!important;
+}
 .mt-5, .my-5 {
     margin-top: 3rem!important;
 }

@@ -38,7 +38,7 @@ function TamagoSticker(props) {
           <div className="row"><div className="col border-bottom mv-info">
             <i className="cil-flag-alt"></i>&nbsp;{whereToSend}</div>
           </div>
-          <div className="row">
+          <div className="row mt-3">
             <div className="col border-bottom mv-info">&nbsp;{senderName}</div>
           </div>
         </div>
@@ -49,7 +49,7 @@ function TamagoSticker(props) {
           <div className="row"><div className="col border-bottom mv-info">
             <i className="cil-flag-alt"></i>&nbsp;{whereToReceive}</div>
           </div>
-          <div className="row">
+          <div className="row mt-3">
             <div className="col border-bottom mv-info">&nbsp;{recipientName}</div>
           </div>
         </div>
