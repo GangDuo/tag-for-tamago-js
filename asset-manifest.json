@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/tag-for-tamago-js/static/css/main.b2be8ea0.chunk.css",
-    "main.js": "/tag-for-tamago-js/static/js/main.6301dcdb.chunk.js",
-    "main.js.map": "/tag-for-tamago-js/static/js/main.6301dcdb.chunk.js.map",
+    "main.css": "/tag-for-tamago-js/static/css/main.cfc368e8.chunk.css",
+    "main.js": "/tag-for-tamago-js/static/js/main.c318f809.chunk.js",
+    "main.js.map": "/tag-for-tamago-js/static/js/main.c318f809.chunk.js.map",
     "runtime-main.js": "/tag-for-tamago-js/static/js/runtime-main.4dd731f5.js",
     "runtime-main.js.map": "/tag-for-tamago-js/static/js/runtime-main.4dd731f5.js.map",
     "static/css/2.cbee05ea.chunk.css": "/tag-for-tamago-js/static/css/2.cbee05ea.chunk.css",
-    "static/js/2.fdc0df35.chunk.js": "/tag-for-tamago-js/static/js/2.fdc0df35.chunk.js",
-    "static/js/2.fdc0df35.chunk.js.map": "/tag-for-tamago-js/static/js/2.fdc0df35.chunk.js.map",
+    "static/js/2.bdabd4d0.chunk.js": "/tag-for-tamago-js/static/js/2.bdabd4d0.chunk.js",
+    "static/js/2.bdabd4d0.chunk.js.map": "/tag-for-tamago-js/static/js/2.bdabd4d0.chunk.js.map",
     "index.html": "/tag-for-tamago-js/index.html",
-    "precache-manifest.53843603f5349a93507d7a3f30215238.js": "/tag-for-tamago-js/precache-manifest.53843603f5349a93507d7a3f30215238.js",
+    "precache-manifest.4f1789788e135384ccc9a3d95c84a5cb.js": "/tag-for-tamago-js/precache-manifest.4f1789788e135384ccc9a3d95c84a5cb.js",
     "service-worker.js": "/tag-for-tamago-js/service-worker.js",
     "static/css/2.cbee05ea.chunk.css.map": "/tag-for-tamago-js/static/css/2.cbee05ea.chunk.css.map",
-    "static/css/main.b2be8ea0.chunk.css.map": "/tag-for-tamago-js/static/css/main.b2be8ea0.chunk.css.map",
-    "static/js/2.fdc0df35.chunk.js.LICENSE": "/tag-for-tamago-js/static/js/2.fdc0df35.chunk.js.LICENSE",
+    "static/css/main.cfc368e8.chunk.css.map": "/tag-for-tamago-js/static/css/main.cfc368e8.chunk.css.map",
+    "static/js/2.bdabd4d0.chunk.js.LICENSE": "/tag-for-tamago-js/static/js/2.bdabd4d0.chunk.js.LICENSE",
     "static/media/App.css": "/tag-for-tamago-js/static/media/cif-zw.032efc79.svg",
     "static/media/logo.svg": "/tag-for-tamago-js/static/media/logo.5d5d9eef.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.4dd731f5.js",
     "static/css/2.cbee05ea.chunk.css",
-    "static/js/2.fdc0df35.chunk.js",
-    "static/css/main.b2be8ea0.chunk.css",
-    "static/js/main.6301dcdb.chunk.js"
+    "static/js/2.bdabd4d0.chunk.js",
+    "static/css/main.cfc368e8.chunk.css",
+    "static/js/main.c318f809.chunk.js"
   ]
 }
