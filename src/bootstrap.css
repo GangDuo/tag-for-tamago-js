@@ -96,3 +96,6 @@
 .border-left {
     border-left: 1px solid #d8dbe0!important;
 }
+.text-danger {
+    color: #dc3545!important;
+}

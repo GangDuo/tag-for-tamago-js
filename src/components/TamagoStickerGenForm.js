@@ -1,5 +1,6 @@
 import React from 'react';
 import { Formik, useField, Field } from 'formik';
+import * as Yup from 'yup';
 
 const TextBox = ({ label, ...props }) => {
   // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
@@ -10,7 +11,7 @@ const TextBox = ({ label, ...props }) => {
       <label htmlFor={props.id || props.name}>{label}</label>
       <input className="text-input" {...field} {...props} />
       {meta.touched && meta.error ? (
-        <div className="error">{meta.error}</div>
+        <div className="text-danger">{meta.error}</div>
       ) : null}
     </>
   );
@@ -28,7 +29,7 @@ const Checkbox = ({ children, ...props }) => {
         {children}
       </label>
       {meta.touched && meta.error ? (
-        <div className="error">{meta.error}</div>
+        <div className="text-danger">{meta.error}</div>
       ) : null}
     </>
   );
@@ -46,7 +47,7 @@ const Radiobox = ({ children, ...props }) => {
         {children}
       </label>
       {meta.touched && meta.error ? (
-        <div className="error">{meta.error}</div>
+        <div className="text-danger">{meta.error}</div>
       ) : null}
     </>
   );
@@ -68,6 +69,14 @@ const TamagoStickerGenForm = (props) => {
     <h1>たまご便</h1>
     <Formik
       initialValues={initialValues}
+      validationSchema = {Yup.object({
+        shippedAt: Yup.string()
+          .required('必須'),
+        yourName: Yup.string()
+          .required('必須'),
+        to: Yup.string()
+          .required('必須'),
+      })}
       onSubmit={handleSubmit}
     >
       {props => (
@@ -93,7 +102,7 @@ const TamagoStickerGenForm = (props) => {
                 <TextBox label="相手の名前：" type="text" name="recipientName" size="10" />
               </p>
               <p>
-                <label htmlFor="to">どこへ送る：</label>
+                <label htmlFor="to">{props.errors.to ? <span className="text-danger">{props.errors.to}</span> : null}どこへ送る：</label>
                 <Field name="to" as="select" multiple size="10">
                 {
                   destinations.map((x, i) => <option key={i} value={x}>{x}</option>)
