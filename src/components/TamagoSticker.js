@@ -1,8 +1,9 @@
 import React from 'react';
 import Stamp from './Stamp';
+import Caremark from './Caremark';
 
 function TamagoSticker(props) {
-  const { senderName, whereToSend, recipientName, whereToReceive, shippedAt, contents, description } = props
+  const { senderName, whereToSend, recipientName, whereToReceive, shippedAt, contents, caremark, description } = props
 
   return (
     <>
@@ -62,7 +63,12 @@ function TamagoSticker(props) {
             <i className="cil-pencil"></i>&nbsp;<b>商品名・備考</b></div>
           </div>
           <div className="row" style={{height: "120px"}}>
-            <div className="col" dangerouslySetInnerHTML={{__html: description}}/>
+            <div className="col">
+              <div dangerouslySetInnerHTML={{__html: description}} />
+              {caremark &&
+               caremark.map((x, i) => <Caremark key={i}>{x}</Caremark>)
+              }
+            </div>
           </div>
         </div>
       </div>

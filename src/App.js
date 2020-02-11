@@ -31,7 +31,7 @@ function App() {
   }
 
   if(isPreview) {
-    const {shippedAt, yourName, recipientName, content, from, description} = context
+    const {shippedAt, yourName, recipientName, content, caremark, from, description} = context
     /* yyyy.m.d */
     const shippedAtForDisplay = shippedAt.replace(/([0-9])-0?([0-9])-0?([0-9])/, '$1.$2.$3')
     return (
@@ -52,6 +52,7 @@ function App() {
                                  recipientName={recipientName || "　"}
                                  whereToReceive={pair[0]}
                                  content={content}
+                                 caremark={caremark}
                                  description={description} />
                 </article>
                 <hr className="dotted-line" />
@@ -64,6 +65,7 @@ function App() {
                                  recipientName={recipientName || "　"}
                                  whereToReceive={pair[1]}
                                  content={content}
+                                 caremark={caremark}
                                  description={description} />
                 </article>
                 }
