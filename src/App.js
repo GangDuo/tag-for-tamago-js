@@ -17,7 +17,7 @@ function App() {
   const [isPreview, setIsPreview] = useState(false);
   const [context, setContext] = useState(null)
   useEffect(() => {
-    document.title = '印刷プレビュー'
+    document.title = 'たまご便'
     document.body.classList.add(PAPER_SIZE);
   }, []);
 
