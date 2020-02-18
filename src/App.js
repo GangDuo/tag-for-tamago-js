@@ -10,6 +10,7 @@ import './bootstrap.css';
 import './half-line.css';
 import TamagoSticker from './components/TamagoSticker';
 import TamagoStickerGenForm from './components/TamagoStickerGenForm';
+import Container from '@material-ui/core/Container';
 
 const PAPER_SIZE = "A4";
 
@@ -78,7 +79,7 @@ function App() {
     const tomorrow = moment().add(1, 'days')
 
     return (
-      <>
+      <Container maxWidth="md">
         <TamagoStickerGenForm initialValues={context || {
             shippedAt: tomorrow.format('YYYY-MM-DD'),
             yourName: '',
@@ -92,7 +93,7 @@ function App() {
             setContext(values)
             setIsPreview(true)
           }}/>
-      </>
+      </Container>
     )
   }
 }
