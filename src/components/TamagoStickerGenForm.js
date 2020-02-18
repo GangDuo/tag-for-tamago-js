@@ -1,57 +1,18 @@
 import React from 'react';
-import { Formik, useField, Field } from 'formik';
+import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
-
-const TextBox = ({ label, ...props }) => {
-  // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
-  // which we can spread on <input> and also replace ErrorMessage entirely.
-  const [field, meta] = useField(props);
-  return (
-    <>
-      <label htmlFor={props.id || props.name}>{label}</label>
-      <input className="text-input" {...field} {...props} />
-      {meta.touched && meta.error ? (
-        <div className="text-danger">{meta.error}</div>
-      ) : null}
-    </>
-  );
-};
-
-const Checkbox = ({ children, ...props }) => {
-  // We need to tell useField what type of input this is
-  // since React treats radios and checkboxes differently
-  // than inputs/select/textarea.
-  const [field, meta] = useField({ ...props, type: 'checkbox' });
-  return (
-    <>
-      <label className="checkbox">
-        <input type="checkbox" {...field} {...props} />
-        {children}
-      </label>
-      {meta.touched && meta.error ? (
-        <div className="text-danger">{meta.error}</div>
-      ) : null}
-    </>
-  );
-};
-
-const Radiobox = ({ children, ...props }) => {
-  // We need to tell useField what type of input this is
-  // since React treats radios and checkboxes differently
-  // than inputs/select/textarea.
-  const [field, meta] = useField({ ...props, type: 'radio' });
-  return (
-    <>
-      <label className="radio">
-        <input type="radio" {...field} {...props} />
-        {children}
-      </label>
-      {meta.touched && meta.error ? (
-        <div className="text-danger">{meta.error}</div>
-      ) : null}
-    </>
-  );
-};
+import { TextField, Select, RadioGroup, CheckboxWithLabel  } from 'formik-material-ui';
+import { Button, FormControlLabel, Radio } from '@material-ui/core';
+import { DatePicker } from 'formik-material-ui-pickers';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+// Depending on the library you picked
+import DateFnsUtils from '@date-io/date-fns';
+import jaJP from "date-fns/locale/ja";
+import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Grid from '@material-ui/core/Grid';
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 const destinations = [
   "本社","前橋本店","伊勢崎店","上中居店","上並榎店","太田飯塚店","熊谷肥塚店",
@@ -67,75 +28,119 @@ const TamagoStickerGenForm = (props) => {
   return (
   <div>
     <h1>たまご便</h1>
-    <Formik
-      initialValues={initialValues}
-      validationSchema = {Yup.object({
-        shippedAt: Yup.string()
-          .required('必須'),
-        yourName: Yup.string()
-          .required('必須'),
-        to: Yup.string()
-          .required('必須'),
-      })}
-      onSubmit={handleSubmit}
-    >
-      {props => (
-        <form onSubmit={props.handleSubmit}>
-          <p><button type="submit">プレビュー</button></p>
-          <p>
-            <TextBox label="出荷日：" name="shippedAt" type="date" placeholder="Jane"/>
-          </p>
-          <div className="d-flex">
-            <div className="d-flex flex-column">
-              <p>
-                <TextBox label="あなたの名前：" name="yourName" type="text" size="10" />
-              </p>
-              <p>
-                <label htmlFor="from">どこから送る：</label>
-                <Field name="from" as="select">
-                  <option value="本社">本社</option>
-                </Field>
-              </p>
+    <MuiPickersUtilsProvider utils={DateFnsUtils} locale={jaJP}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema = {Yup.object({
+          shippedAt: Yup.string()
+            .required('必須'),
+          yourName: Yup.string()
+            .required('必須'),
+          to: Yup.string()
+            .required('必須'),
+        })}
+        onSubmit={handleSubmit}
+      >
+        {({submitForm, isSubmitting, ...props}) => (
+          <form onSubmit={props.handleSubmit}>
+            <p><Button variant="contained" color="primary"
+                       disabled={isSubmitting}
+                       onClick={submitForm}>プレビュー</Button></p>
+            <p>
+              <Field component={DatePicker} name="shippedAt" label="出荷日" />
+            </p>
+            <div className="d-flex">
+              <div className="d-flex flex-column">
+                <p>
+                  <Field component={TextField} label="あなたの名前：" name="yourName" type="text" size="10" />
+                </p>
+                <FormControl>
+                  <InputLabel htmlFor="from-native">どこから送る</InputLabel>
+                  <Field
+                    component={Select}
+                    name="from"
+                    inputProps={{
+                      id: 'from-native',
+                    }}
+                  >
+                    <MenuItem value="本社">本社</MenuItem>
+                  </Field>
+                </FormControl>
+              </div>
+              <div className="d-flex flex-column">
+                <p>
+                  <Field component={TextField} label="相手の名前：" type="text" name="recipientName" size="10" />
+                </p>
+                <p>
+                  <FormControl error={!!props.errors.to}>
+                    <InputLabel shrink htmlFor="to-native">
+                      どこへ送る
+                    </InputLabel>
+                    <Field component={Select}
+                           name="to"
+                           native={true}
+                           multiple={true}
+                           inputProps={{
+                             id: 'to-native',
+                             size: 10,
+                             style: {width: "200px"}
+                           }}
+                    >
+                    {
+                      destinations.map((x, i) => <option key={i} value={x}>{x}</option>)
+                    }
+                    </Field>
+                    { props.errors.to ? <FormHelperText>{props.errors.to}</FormHelperText> : null }
+                  </FormControl>
+                </p>
+              </div>
             </div>
-            <div className="d-flex flex-column">
-              <p>
-                <TextBox label="相手の名前：" type="text" name="recipientName" size="10" />
-              </p>
-              <p>
-                <label htmlFor="to">{props.errors.to ? <span className="text-danger">{props.errors.to}</span> : null}どこへ送る：</label>
-                <Field name="to" as="select" multiple size="10">
+            <div className="d-flex">
+              <fieldset>
+                <legend>品名</legend>
+                <Field component={RadioGroup} name="content">
                 {
-                  destinations.map((x, i) => <option key={i} value={x}>{x}</option>)
+                  ['客注', '返品', 'その他']
+                  .map((x, i) => <FormControlLabel key={i}
+                                                   control={<Radio disabled={isSubmitting} />}
+                                                   value={x}
+                                                   label={x}
+                                                   disabled={isSubmitting}/>)
                 }
                 </Field>
-              
-              </p>
+              </fieldset>
+
+              <fieldset>
+                <legend>ケアマーク</legend>
+                <Grid container
+                      direction="column"
+                      justify="space-around"
+                      alignItems="flex-start"
+                >
+                {
+                  ['取扱注意', '壊れもの', '水濡れ防止', '横積禁止', '踏つけ厳禁', 'カッター注意', '積段数制限', '直射日光・熱遮へい']
+                  .map((x, i) => <Field key={i}
+                                        component={CheckboxWithLabel}
+                                        name="caremark"
+                                        type="checkbox"
+                                        value={x}
+                                        Label={{ label: x }} />)
+                }
+                </Grid>
+              </fieldset>
+
+              <Field component={TextField}
+                     multiline
+                     label="備考"
+                     name="description"
+                     size="10"
+                     variant="outlined" />
             </div>
-          </div>
-          <div className="d-flex">
-            <fieldset>
-              <legend>品名</legend>
-              {
-                ['客注', '返品', 'その他']
-                .map((x, i) => <p key={i}><Radiobox name="content" value={x}>{x}</Radiobox></p>)
-              }
-            </fieldset>
-            <fieldset>
-              <legend>ケアマーク</legend>
-              {
-                ['取扱注意', '壊れもの', '水濡れ防止', '横積禁止', '踏つけ厳禁', 'カッター注意', '積段数制限', '直射日光・熱遮へい']
-                .map((x, i) => <p key={i}><Checkbox name="caremark" value={x}>{x}</Checkbox></p>)
-              }
-            </fieldset>
-            <p>
-              <label htmlFor="description">備考：</label><br />
-              <Field as="textarea" name="description" rows="20" cols="40" />
-            </p>
-          </div>
-        </form>
-      
-      )}
-    </Formik>
+          </form>
+        
+        )}
+      </Formik>
+    </MuiPickersUtilsProvider>
   </div>
 );
 }
