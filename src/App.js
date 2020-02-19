@@ -11,6 +11,7 @@ import './half-line.css';
 import TamagoSticker from './components/TamagoSticker';
 import TamagoStickerGenForm from './components/TamagoStickerGenForm';
 import Container from '@material-ui/core/Container';
+import { Button } from '@material-ui/core';
 
 const PAPER_SIZE = "A4";
 
@@ -38,7 +39,11 @@ function App() {
     return (
       <>
         <form>
-          <button onClick={() => setIsPreview(false)}>戻る</button>
+          <Button variant="contained" color="primary" onClick={() => setIsPreview(false)}>
+            <i className="cil-arrow-circle-left"></i>
+            &nbsp;
+            戻る
+          </Button>
         </form>
 
         {

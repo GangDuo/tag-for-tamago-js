@@ -45,7 +45,7 @@ const TamagoStickerGenForm = (props) => {
           <form onSubmit={props.handleSubmit}>
             <p><Button variant="contained" color="primary"
                        disabled={isSubmitting}
-                       onClick={submitForm}>プレビュー</Button></p>
+                       onClick={submitForm}><i className="cil-print"></i>&nbsp;プレビュー</Button></p>
             <p>
               <Field component={DatePicker} name="shippedAt" label="出荷日" />
             </p>
