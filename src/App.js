@@ -84,7 +84,7 @@ function App() {
     const tomorrow = moment().add(1, 'days')
 
     return (
-      <Container maxWidth="md">
+      <Container maxWidth="sm">
         <TamagoStickerGenForm initialValues={context || {
             shippedAt: tomorrow.format('YYYY-MM-DD'),
             yourName: '',

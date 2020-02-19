@@ -43,73 +43,99 @@ const TamagoStickerGenForm = (props) => {
       >
         {({submitForm, isSubmitting, ...props}) => (
           <form onSubmit={props.handleSubmit}>
-            <p><Button variant="contained" color="primary"
+            <Grid container
+                  direction="row"
+                  justify="space-between"
+                  alignItems="flex-start"
+            >
+              <Button variant="contained" color="primary"
                        disabled={isSubmitting}
-                       onClick={submitForm}><i className="cil-print"></i>&nbsp;プレビュー</Button></p>
-            <p>
+                       onClick={submitForm}><i className="cil-print"></i>&nbsp;プレビュー</Button>
               <Field component={DatePicker} name="shippedAt" label="出荷日" />
-            </p>
-            <div className="d-flex">
-              <div className="d-flex flex-column">
-                <p>
-                  <Field component={TextField} label="あなたの名前：" name="yourName" type="text" size="10" />
-                </p>
-                <FormControl>
-                  <InputLabel htmlFor="from-native">どこから送る</InputLabel>
-                  <Field
-                    component={Select}
-                    name="from"
-                    inputProps={{
-                      id: 'from-native',
-                    }}
-                  >
-                    <MenuItem value="本社">本社</MenuItem>
-                  </Field>
-                </FormControl>
-              </div>
-              <div className="d-flex flex-column">
-                <p>
-                  <Field component={TextField} label="相手の名前：" type="text" name="recipientName" size="10" />
-                </p>
-                <p>
-                  <FormControl error={!!props.errors.to}>
-                    <InputLabel shrink htmlFor="to-native">
-                      どこへ送る
-                    </InputLabel>
-                    <Field component={Select}
-                           name="to"
-                           native={true}
-                           multiple={true}
-                           inputProps={{
-                             id: 'to-native',
-                             size: 10,
-                             style: {width: "200px"}
-                           }}
-                    >
-                    {
-                      destinations.map((x, i) => <option key={i} value={x}>{x}</option>)
-                    }
-                    </Field>
-                    { props.errors.to ? <FormHelperText>{props.errors.to}</FormHelperText> : null }
-                  </FormControl>
-                </p>
-              </div>
-            </div>
-            <div className="d-flex">
+            </Grid>
+
+            <Grid container
+                  direction="row"
+                  justify="space-between"
+                  alignItems="flex-start"
+            >
+              <Field component={TextField} label="あなたの名前：" name="yourName" type="text" />
+              <FormControl style={{width: "200px"}}>
+                <InputLabel htmlFor="from-native">どこから送る</InputLabel>
+                <Field
+                  component={Select}
+                  name="from"
+                  inputProps={{
+                    id: 'from-native',
+                  }}
+                >
+                  <MenuItem value="本社">本社</MenuItem>
+                </Field>
+              </FormControl>
+            </Grid>
+
+            <Grid container
+                  direction="row"
+                  justify="space-between"
+                  alignItems="flex-start"
+            >
+              <Field component={TextField} label="相手の名前：" type="text" name="recipientName" />
+
+              <FormControl error={!!props.errors.to}>
+                <InputLabel shrink htmlFor="to-native">
+                  どこへ送る
+                </InputLabel>
+                <Field component={Select}
+                        name="to"
+                        native={true}
+                        multiple={true}
+                        inputProps={{
+                          id: 'to-native',
+                          size: 10,
+                          style: {width: "175px"}
+                        }}
+                >
+                {
+                  destinations.map((x, i) => <option key={i} value={x}>{x}</option>)
+                }
+                </Field>
+                { props.errors.to ? <FormHelperText>{props.errors.to}</FormHelperText> : null }
+              </FormControl>
+            </Grid>
+
+            <Grid
+              container
+              direction="row"
+              justify="flex-start"
+              alignItems="flex-start"
+            >
               <fieldset>
                 <legend>品名</legend>
                 <Field component={RadioGroup} name="content">
-                {
-                  ['客注', '返品', 'その他']
-                  .map((x, i) => <FormControlLabel key={i}
-                                                   control={<Radio disabled={isSubmitting} />}
-                                                   value={x}
-                                                   label={x}
-                                                   disabled={isSubmitting}/>)
-                }
+                  <Grid
+                    container
+                    direction="row"
+                    justify="center"
+                    alignItems="flex-start"
+                  >
+                  {
+                    ['客注', '返品', 'その他']
+                    .map((x, i) => <FormControlLabel key={i}
+                                                    control={<Radio disabled={isSubmitting} />}
+                                                    value={x}
+                                                    label={x}
+                                                    disabled={isSubmitting}/>)
+                  }
+                  </Grid>
                 </Field>
               </fieldset>
+            </Grid>
 
+            <Grid container
+                  direction="row"
+                  justify="space-between"
+                  alignItems="flex-start"
+            >
               <fieldset>
                 <legend>ケアマーク</legend>
                 <Grid container
@@ -133,9 +159,8 @@ const TamagoStickerGenForm = (props) => {
                      multiline
                      label="備考"
                      name="description"
-                     size="10"
                      variant="outlined" />
-            </div>
+            </Grid>
           </form>
         
         )}
