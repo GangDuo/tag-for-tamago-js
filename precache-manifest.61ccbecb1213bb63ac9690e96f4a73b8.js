@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "67f7abd638efa9557b53e560d2f04498",
+    "revision": "30a7f9cc55cbf9a058a4ea25ccfe2342",
     "url": "/tag-for-tamago-js/index.html"
   },
   {
-    "revision": "980a576b0df3e717b4b5",
+    "revision": "84c58cc11dfc34ce9de8",
     "url": "/tag-for-tamago-js/static/css/2.cbee05ea.chunk.css"
   },
   {
-    "revision": "196dfafc5fb72aed28dc",
+    "revision": "6f553b7d23bc73fece9e",
     "url": "/tag-for-tamago-js/static/css/main.cfc368e8.chunk.css"
   },
   {
-    "revision": "980a576b0df3e717b4b5",
-    "url": "/tag-for-tamago-js/static/js/2.217e3d45.chunk.js"
+    "revision": "84c58cc11dfc34ce9de8",
+    "url": "/tag-for-tamago-js/static/js/2.c1e6a3c1.chunk.js"
   },
   {
     "revision": "fd56044fbab90a74509299bbf81211c5",
-    "url": "/tag-for-tamago-js/static/js/2.217e3d45.chunk.js.LICENSE"
+    "url": "/tag-for-tamago-js/static/js/2.c1e6a3c1.chunk.js.LICENSE"
   },
   {
-    "revision": "196dfafc5fb72aed28dc",
-    "url": "/tag-for-tamago-js/static/js/main.b66b7323.chunk.js"
+    "revision": "6f553b7d23bc73fece9e",
+    "url": "/tag-for-tamago-js/static/js/main.5c1c0059.chunk.js"
   },
   {
     "revision": "2714113cf3a28d68805f",
@@ -848,7 +848,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/tag-for-tamago-js/static/media/cif-zw.032efc79.svg"
   },
   {
-    "revision": "5d5d9eefa31e5e13a6610d9fa7a283bb",
-    "url": "/tag-for-tamago-js/static/media/logo.5d5d9eef.svg"
+    "revision": "ee7cd8ed2dcec943251eb2763684fc6f",
+    "url": "/tag-for-tamago-js/static/media/logo.ee7cd8ed.svg"
   }
 ]);
