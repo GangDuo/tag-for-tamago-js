@@ -34,8 +34,7 @@ function App() {
 
   if(isPreview) {
     const {shippedAt, yourName, recipientName, content, caremark, from, description} = context
-    /* yyyy.m.d */
-    const shippedAtForDisplay = shippedAt.replace(/([0-9])-0?([0-9])-0?([0-9])/, '$1.$2.$3')
+    const shippedAtForDisplay = moment(shippedAt).format("YYYY.M.D")
     return (
       <>
         <form>
