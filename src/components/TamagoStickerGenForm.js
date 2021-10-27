@@ -47,6 +47,7 @@ function TabPanel(props) {
 const TamagoStickerGenForm = (props) => {
   const {handleSubmit, initialValues} = props
   const [tabIndex, setTabIndex] = React.useState(0);
+  const [tabCnt, setTabCnt] = React.useState(1);
 
   const handleChangeTabIndex = (event, newValue) => {
     setTabIndex(newValue);
@@ -190,19 +191,20 @@ const TamagoStickerGenForm = (props) => {
             </Grid>
 
             <Tabs value={tabIndex} onChange={handleChangeTabIndex}>
-              <Tab label="Item One"  />
-              <Tab label="Item Two"  />
-              <Tab label="Item Three"  />
+              {
+                [...Array(tabCnt).keys()].map(i => <Tab label={`${i+1}`}  />)
+              }
+              <Button onClick={() => setTabCnt(prevCount => prevCount + 1)}>+</Button>
             </Tabs>
-            <TabPanel value={tabIndex} index={0}>
-              Item One
-            </TabPanel>
-            <TabPanel value={tabIndex} index={1}>
-              Item Two
-            </TabPanel>
-            <TabPanel value={tabIndex} index={2}>
-              Item Three
-            </TabPanel>
+            {
+              [...Array(tabCnt).keys()].map(i => {
+                return (
+                  <TabPanel value={tabIndex} index={i}>
+                    {`Item ${i+1}`}
+                  </TabPanel>
+                )
+              })
+            }
           </form>
         
         )}
