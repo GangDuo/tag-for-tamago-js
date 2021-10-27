@@ -13,6 +13,10 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Grid from '@material-ui/core/Grid';
 import FormHelperText from '@material-ui/core/FormHelperText';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 const destinations = [
   "本社","前橋本店","伊勢崎店","上中居店","上並榎店","太田飯塚店","熊谷肥塚店",
@@ -22,9 +26,32 @@ const destinations = [
   "長岡店","ﾁﾋﾞ","HDｱｳﾄﾚｯﾄ","物流"
 ];
 
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
 const TamagoStickerGenForm = (props) => {
   const {handleSubmit, initialValues} = props
-  
+  const [tabIndex, setTabIndex] = React.useState(0);
+
+  const handleChangeTabIndex = (event, newValue) => {
+    setTabIndex(newValue);
+  };
+
   return (
   <div>
     <h1>たまご便</h1>
@@ -161,6 +188,21 @@ const TamagoStickerGenForm = (props) => {
                      name="description"
                      variant="outlined" />
             </Grid>
+
+            <Tabs value={tabIndex} onChange={handleChangeTabIndex}>
+              <Tab label="Item One"  />
+              <Tab label="Item Two"  />
+              <Tab label="Item Three"  />
+            </Tabs>
+            <TabPanel value={tabIndex} index={0}>
+              Item One
+            </TabPanel>
+            <TabPanel value={tabIndex} index={1}>
+              Item Two
+            </TabPanel>
+            <TabPanel value={tabIndex} index={2}>
+              Item Three
+            </TabPanel>
           </form>
         
         )}
