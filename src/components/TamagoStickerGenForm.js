@@ -190,7 +190,10 @@ const TamagoStickerGenForm = (props) => {
                      variant="outlined" />
             </Grid>
 
-            <Tabs value={tabIndex} onChange={handleChangeTabIndex}>
+            <Tabs value={tabIndex} onChange={handleChangeTabIndex}
+              scrollButtons="auto"
+              variant="scrollable"
+            >
               {
                 [...Array(tabCnt).keys()].map(i => <Tab label={`${i+1}`}  />)
               }
