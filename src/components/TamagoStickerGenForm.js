@@ -197,7 +197,10 @@ const TamagoStickerGenForm = (props) => {
               {
                 [...Array(tabCnt).keys()].map(i => <Tab label={`${i+1}`}  />)
               }
-              <Button onClick={() => setTabCnt(prevCount => prevCount + 1)}>+</Button>
+              <Button onClick={() => {
+                setTabIndex(prevCount => prevCount + 1)
+                setTabCnt(prevCount => prevCount + 1)
+              }}>+</Button>
             </Tabs>
             {
               [...Array(tabCnt).keys()].map(i => {
