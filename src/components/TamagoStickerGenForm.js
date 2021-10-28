@@ -1,5 +1,5 @@
 import React from 'react';
-import { Formik, Field } from 'formik';
+import { Formik, Field, FieldArray } from 'formik';
 import * as Yup from 'yup';
 import { TextField, Select, RadioGroup, CheckboxWithLabel  } from 'formik-material-ui';
 import { Button, FormControlLabel, Radio } from '@material-ui/core';
@@ -15,7 +15,6 @@ import Grid from '@material-ui/core/Grid';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
 const destinations = [
@@ -35,9 +34,9 @@ function TabPanel(props) {
       hidden={value !== index}
       {...other}
     >
-      {value === index && (
+      {value === index && (      
         <Box p={3}>
-          <Typography>{children}</Typography>
+          {children}
         </Box>
       )}
     </div>
@@ -54,169 +53,241 @@ const TamagoStickerGenForm = (props) => {
   };
 
   return (
-  <div>
-    <h1>たまご便</h1>
-    <MuiPickersUtilsProvider utils={DateFnsUtils} locale={jaJP}>
-      <Formik
-        initialValues={initialValues}
-        validationSchema = {Yup.object({
-          shippedAt: Yup.string()
-            .required('必須'),
-          yourName: Yup.string()
-            .required('必須'),
-          to: Yup.string()
-            .required('必須'),
-        })}
-        onSubmit={handleSubmit}
-      >
-        {({submitForm, isSubmitting, ...props}) => (
-          <form onSubmit={props.handleSubmit}>
-            <Grid container
-                  direction="row"
-                  justify="space-between"
-                  alignItems="flex-start"
-            >
-              <Button variant="contained" color="primary"
-                       disabled={isSubmitting}
-                       onClick={submitForm}><i className="cil-print"></i>&nbsp;プレビュー</Button>
-              <Field component={DatePicker} name="shippedAt" label="出荷日" />
-            </Grid>
+    <div>
+      <h1>たまご便</h1>
+      <MuiPickersUtilsProvider utils={DateFnsUtils} locale={jaJP}>
+        <Formik
+          initialValues={initialValues}
+          validationSchema = {Yup.object({
+            shippedAt: Yup.string()
+              .required('必須'),
+            yourName: Yup.string()
+              .required('必須'),
+            to: Yup.string()
+              .required('必須'),
+          })}
+          onSubmit={handleSubmit}
+        >
+          {({submitForm, isSubmitting, values, ...props }) => (
+            <form onSubmit={props.handleSubmit}>
+              <Grid
+                container
+                direction="row"
+                justify="space-between"
+                alignItems="flex-start"
+              >
+                <Button
+                  variant="contained"
+                  color="primary"
+                  disabled={isSubmitting}
+                  onClick={submitForm}
+                >
+                  <i className="cil-print"></i>&nbsp;プレビュー
+                </Button>
+                <Field component={DatePicker} name="shippedAt" label="出荷日" />
+              </Grid>
 
-            <Grid container
-                  direction="row"
-                  justify="space-between"
-                  alignItems="flex-start"
-            >
-              <Field component={TextField} label="あなたの名前：" name="yourName" type="text" />
-              <FormControl style={{width: "200px"}}>
-                <InputLabel htmlFor="from-native">どこから送る</InputLabel>
+              <Grid
+                container
+                direction="row"
+                justify="space-between"
+                alignItems="flex-start"
+              >
                 <Field
-                  component={Select}
-                  name="from"
-                  inputProps={{
-                    id: 'from-native',
-                  }}
-                >
-                  <MenuItem value="本社">本社</MenuItem>
-                </Field>
-              </FormControl>
-            </Grid>
-
-            <Grid container
-                  direction="row"
-                  justify="space-between"
-                  alignItems="flex-start"
-            >
-              <Field component={TextField} label="相手の名前：" type="text" name="recipientName" />
-
-              <FormControl error={!!props.errors.to}>
-                <InputLabel shrink htmlFor="to-native">
-                  どこへ送る
-                </InputLabel>
-                <Field component={Select}
-                        name="to"
-                        native={true}
-                        multiple={true}
-                        inputProps={{
-                          id: 'to-native',
-                          size: 10,
-                          style: {width: "175px"}
-                        }}
-                >
-                {
-                  destinations.map((x, i) => <option key={i} value={x}>{x}</option>)
-                }
-                </Field>
-                { props.errors.to ? <FormHelperText>{props.errors.to}</FormHelperText> : null }
-              </FormControl>
-            </Grid>
-
-            <Grid
-              container
-              direction="row"
-              justify="flex-start"
-              alignItems="flex-start"
-            >
-              <fieldset>
-                <legend>品名</legend>
-                <Field component={RadioGroup} name="content">
-                  <Grid
-                    container
-                    direction="row"
-                    justify="center"
-                    alignItems="flex-start"
+                  component={TextField}
+                  label="あなたの名前："
+                  name="yourName"
+                  type="text"
+                />
+                <FormControl style={{ width: "200px" }}>
+                  <InputLabel htmlFor="from-native">どこから送る</InputLabel>
+                  <Field
+                    component={Select}
+                    name="from"
+                    inputProps={{
+                      id: "from-native",
+                    }}
                   >
-                  {
-                    ['客注', '返品', 'その他']
-                    .map((x, i) => <FormControlLabel key={i}
-                                                    control={<Radio disabled={isSubmitting} />}
-                                                    value={x}
-                                                    label={x}
-                                                    disabled={isSubmitting}/>)
-                  }
-                  </Grid>
-                </Field>
-              </fieldset>
-            </Grid>
+                    <MenuItem value="本社">本社</MenuItem>
+                  </Field>
+                </FormControl>
+              </Grid>
 
-            <Grid container
-                  direction="row"
-                  justify="space-between"
-                  alignItems="flex-start"
-            >
-              <fieldset>
-                <legend>ケアマーク</legend>
-                <Grid container
-                      direction="column"
-                      justify="space-around"
+              <Grid
+                container
+                direction="row"
+                justify="space-between"
+                alignItems="flex-start"
+              >
+                <Field
+                  component={TextField}
+                  label="相手の名前："
+                  type="text"
+                  name="recipientName"
+                />
+
+                <FormControl error={!!props.errors.to}>
+                  <InputLabel shrink htmlFor="to-native">
+                    どこへ送る
+                  </InputLabel>
+                  <Field
+                    component={Select}
+                    name="to"
+                    native={true}
+                    multiple={true}
+                    inputProps={{
+                      id: "to-native",
+                      size: 10,
+                      style: { width: "175px" },
+                    }}
+                  >
+                    {destinations.map((x, i) => (
+                      <option key={i} value={x}>
+                        {x}
+                      </option>
+                    ))}
+                  </Field>
+                  {props.errors.to ? (
+                    <FormHelperText>{props.errors.to}</FormHelperText>
+                  ) : null}
+                </FormControl>
+              </Grid>
+
+              <FieldArray name="payloads">
+                {({ insert, remove, push }) => (
+                  <div>
+                    <Grid
+                      container
+                      direction="row"
+                      justify="space-between"
                       alignItems="flex-start"
-                >
-                {
-                  ['取扱注意', '壊れもの', '水濡れ防止', '横積禁止', '踏つけ厳禁', 'カッター注意', '積段数制限', '直射日光・熱遮へい']
-                  .map((x, i) => <Field key={i}
-                                        component={CheckboxWithLabel}
-                                        name="caremark"
-                                        type="checkbox"
-                                        value={x}
-                                        Label={{ label: x }} />)
-                }
-                </Grid>
-              </fieldset>
+                    >
+                      <Tabs
+                        value={tabIndex}
+                        onChange={handleChangeTabIndex}
+                        scrollButtons="auto"
+                        variant="scrollable"
+                      >
+                        {values.payloads.length > 0 &&
+                          values.payloads.map((payload, index) => (
+                            <Tab key={index} label={`${index + 1}`} />
+                          ))}
+                      </Tabs>
+                      <Button
+                        onClick={() => {
+                          push({
+                            content: "その他",
+                            description: "",
+                            caremark: [],
+                          });
+                          setTabIndex((prevCount) => prevCount + 1);
+                          setTabCnt((prevCount) => prevCount + 1);
+                        }}
+                      >
+                        +
+                      </Button>
+                    </Grid>
+                    {values.payloads.length > 0 &&
+                      values.payloads.map((payload, index) => (
+                        <TabPanel value={tabIndex} index={index} key={index}>
+                          <div className="col">
+                            <button
+                              type="button"
+                              className="secondary"
+                              onClick={() => remove(index)}
+                            >
+                              X
+                            </button>
+                          </div>
 
-              <Field component={TextField}
-                     multiline
-                     label="備考"
-                     name="description"
-                     variant="outlined" />
-            </Grid>
+                          <Grid
+                            container
+                            direction="row"
+                            justify="flex-start"
+                            alignItems="flex-start"
+                          >
+                            <fieldset>
+                              <legend>品名</legend>
+                              <Field
+                                component={RadioGroup}
+                                name={`payloads.${index}.content`}
+                              >
+                                <Grid
+                                  container
+                                  direction="row"
+                                  justify="center"
+                                  alignItems="flex-start"
+                                >
+                                  {["客注", "返品", "その他"].map((x, i) => (
+                                    <FormControlLabel
+                                      key={i}
+                                      control={
+                                        <Radio disabled={isSubmitting} />
+                                      }
+                                      value={x}
+                                      label={x}
+                                      disabled={isSubmitting}
+                                    />
+                                  ))}
+                                </Grid>
+                              </Field>
+                            </fieldset>
+                          </Grid>
 
-            <Tabs value={tabIndex} onChange={handleChangeTabIndex}
-              scrollButtons="auto"
-              variant="scrollable"
-            >
-              {
-                [...Array(tabCnt).keys()].map(i => <Tab label={`${i+1}`}  />)
-              }
-              <Button onClick={() => {
-                setTabIndex(prevCount => prevCount + 1)
-                setTabCnt(prevCount => prevCount + 1)
-              }}>+</Button>
-            </Tabs>
-            {
-              [...Array(tabCnt).keys()].map(i => {
-                return (
-                  <TabPanel value={tabIndex} index={i}>
-                    {`Item ${i+1}`}
-                  </TabPanel>
-                )
-              })
-            }
-          </form>
-        
-        )}
-      </Formik>
-    </MuiPickersUtilsProvider>
-  </div>
-);
+                          <Grid
+                            container
+                            direction="row"
+                            justify="space-between"
+                            alignItems="flex-start"
+                          >
+                            <fieldset>
+                              <legend>ケアマーク</legend>
+                              <Grid
+                                container
+                                direction="column"
+                                justify="space-around"
+                                alignItems="flex-start"
+                              >
+                                {[
+                                  "取扱注意",
+                                  "壊れもの",
+                                  "水濡れ防止",
+                                  "横積禁止",
+                                  "踏つけ厳禁",
+                                  "カッター注意",
+                                  "積段数制限",
+                                  "直射日光・熱遮へい",
+                                ].map((x, i) => (
+                                  <Field
+                                    key={i}
+                                    component={CheckboxWithLabel}
+                                    name={`payloads.${index}.caremark`}
+                                    type="checkbox"
+                                    value={x}
+                                    Label={{ label: x }}
+                                  />
+                                ))}
+                              </Grid>
+                            </fieldset>
+
+                            <Field
+                              component={TextField}
+                              multiline
+                              label="備考"
+                              name={`payloads.${index}.description`}
+                              variant="outlined"
+                            />
+                          </Grid>
+                        </TabPanel>
+                      ))}
+                  </div>
+                )}
+              </FieldArray>
+            </form>
+          )}
+        </Formik>
+      </MuiPickersUtilsProvider>
+    </div>
+  );
 }
 export default TamagoStickerGenForm;

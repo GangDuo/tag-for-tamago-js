@@ -89,7 +89,14 @@ function App() {
             yourName: '',
             recipientName: '',
             from: '本社',
-            content: 'その他'
+            content: 'その他',
+            payloads: [
+              {
+                content: "その他",
+                description: "",
+                caremark: [],
+              },
+            ]
           }}
           handleSubmit={(values, actions) => {
             console.log(JSON.stringify(values, null, 2));
