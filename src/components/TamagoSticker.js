@@ -3,7 +3,7 @@ import Stamp from './Stamp';
 import Caremark from './Caremark';
 
 function TamagoSticker(props) {
-  const { senderName, whereToSend, recipientName, whereToReceive, shippedAt, contents, caremark, description, currentPackage, totalPackage } = props
+  const { senderName, whereToSend, recipientName, whereToReceive, shippedAt, content, caremark, description, currentPackage, totalPackage } = props
 
   return (
     <>
@@ -57,7 +57,7 @@ function TamagoSticker(props) {
       </div>
 
       <div className="row  border mt-5">
-        <div className="col-4 text-center align-self-center">{contents || "その他"}</div>
+        <div className="col-4 text-center align-self-center">{content || "その他"}</div>
         <div className="col-8 border-left">
           <div className="row"><div className="col">
             <i className="cil-pencil"></i>&nbsp;<b>商品名・備考</b></div>
