@@ -3,7 +3,7 @@ import Stamp from './Stamp';
 import Caremark from './Caremark';
 
 function TamagoSticker(props) {
-  const { senderName, whereToSend, recipientName, whereToReceive, shippedAt, contents, caremark, description } = props
+  const { senderName, whereToSend, recipientName, whereToReceive, shippedAt, contents, caremark, description, currentPackage, totalPackage } = props
 
   return (
     <>
@@ -29,7 +29,7 @@ function TamagoSticker(props) {
             <div className="col align-self-center">口数</div>
           </div>
           <div className="p-2 row align-self-center" style={{height: "80px"}}>
-            <div className="col align-self-center">1-1</div>
+            <div className="col align-self-center">{currentPackage}-{totalPackage}</div>
           </div>
         </div>
       </div>

@@ -27,8 +27,9 @@ function App() {
     return context.to.flatMap(to => context.payloads.map(payload => ({payload, to})))
     .reduce((ax, v, i) => {
       const index = Math.trunc(i/2)
+      const currentPackage = i % context.payloads.length + 1
       ax[index] =  ax[index] || []
-      ax[index].push(v)
+      ax[index].push({currentPackage, ...v})
       return ax
     }, [])
   }
@@ -36,6 +37,7 @@ function App() {
   if(isPreview) {
     const {shippedAt, yourName, recipientName, from} = context
     const shippedAtForDisplay = moment(shippedAt).format("YYYY.M.D")
+    const totalPackage = context.payloads.length
     return (
       <>
         <form>
@@ -59,7 +61,9 @@ function App() {
                                  whereToReceive={pair[0].to}
                                  content={pair[0].payload.content}
                                  caremark={pair[0].payload.caremark}
-                                 description={pair[0].payload.description} />
+                                 description={pair[0].payload.description}
+                                 currentPackage={pair[0].currentPackage}
+                                 totalPackage={totalPackage} />
                 </article>
                 <hr className="dotted-line" />
                 {
@@ -72,7 +76,9 @@ function App() {
                                  whereToReceive={pair[1].to}
                                  content={pair[1].payload.content}
                                  caremark={pair[1].payload.caremark}
-                                 description={pair[1].payload.description} />
+                                 description={pair[1].payload.description}
+                                 currentPackage={pair[1].currentPackage}
+                                 totalPackage={totalPackage} />
                 </article>
                 }
               </section>
