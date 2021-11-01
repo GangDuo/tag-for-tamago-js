@@ -47,7 +47,7 @@
   "devDependencies": {
     "customize-cra": "^0.9.1",
     "gh-pages": "^2.2.0",
-    "react-app-rewired": "^2.1.5"
+    "react-app-rewired": "^2.1.8"
   },
   "homepage": "https://gangduo.github.io/tag-for-tamago-js/"
 }
