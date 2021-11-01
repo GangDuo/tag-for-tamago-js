@@ -24,7 +24,7 @@ function App() {
   }, []);
 
   const pairs = () => {
-    return context.to.flatMap(to => context.payloads.map(payload => ({payload, to})))
+    return context.to.flatMap(to => context.payloads.map(payload => ({...payload, to})))
     .reduce((ax, v, i) => {
       const index = Math.trunc(i/2)
       const currentPackage = i % context.payloads.length + 1
@@ -59,9 +59,9 @@ function App() {
                                  whereToSend={from}
                                  recipientName={recipientName || "　"}
                                  whereToReceive={pair[0].to}
-                                 content={pair[0].payload.content}
-                                 caremark={pair[0].payload.caremark}
-                                 description={pair[0].payload.description}
+                                 content={pair[0].content}
+                                 caremark={pair[0].caremark}
+                                 description={pair[0].description}
                                  currentPackage={pair[0].currentPackage}
                                  totalPackage={totalPackage} />
                 </article>
@@ -74,9 +74,9 @@ function App() {
                                  whereToSend={from}
                                  recipientName={recipientName || "　"}
                                  whereToReceive={pair[1].to}
-                                 content={pair[1].payload.content}
-                                 caremark={pair[1].payload.caremark}
-                                 description={pair[1].payload.description}
+                                 content={pair[1].content}
+                                 caremark={pair[1].caremark}
+                                 description={pair[1].description}
                                  currentPackage={pair[1].currentPackage}
                                  totalPackage={totalPackage} />
                 </article>
