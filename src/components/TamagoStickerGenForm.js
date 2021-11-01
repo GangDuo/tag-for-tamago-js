@@ -73,7 +73,7 @@ const TamagoStickerGenForm = (props) => {
               <Grid
                 container
                 direction="row"
-                justify="space-between"
+                justifyContent="space-between"
                 alignItems="flex-start"
               >
                 <Button
@@ -90,7 +90,7 @@ const TamagoStickerGenForm = (props) => {
               <Grid
                 container
                 direction="row"
-                justify="space-between"
+                justifyContent="space-between"
                 alignItems="flex-start"
               >
                 <Field
@@ -116,7 +116,7 @@ const TamagoStickerGenForm = (props) => {
               <Grid
                 container
                 direction="row"
-                justify="space-between"
+                justifyContent="space-between"
                 alignItems="flex-start"
               >
                 <Field
@@ -159,7 +159,7 @@ const TamagoStickerGenForm = (props) => {
                     <Grid
                       container
                       direction="row"
-                      justify="space-between"
+                      justifyContent="space-between"
                       alignItems="flex-start"
                     >
                       <Tabs
@@ -203,7 +203,7 @@ const TamagoStickerGenForm = (props) => {
                           <Grid
                             container
                             direction="row"
-                            justify="flex-start"
+                            justifyContent="flex-start"
                             alignItems="flex-start"
                           >
                             <fieldset>
@@ -215,7 +215,7 @@ const TamagoStickerGenForm = (props) => {
                                 <Grid
                                   container
                                   direction="row"
-                                  justify="center"
+                                  justifyContent="center"
                                   alignItems="flex-start"
                                 >
                                   {["客注", "返品", "その他"].map((x, i) => (
@@ -237,7 +237,7 @@ const TamagoStickerGenForm = (props) => {
                           <Grid
                             container
                             direction="row"
-                            justify="space-between"
+                            justifyContent="space-between"
                             alignItems="flex-start"
                           >
                             <fieldset>
@@ -245,7 +245,7 @@ const TamagoStickerGenForm = (props) => {
                               <Grid
                                 container
                                 direction="column"
-                                justify="space-around"
+                                justifyContent="space-around"
                                 alignItems="flex-start"
                               >
                                 {[
