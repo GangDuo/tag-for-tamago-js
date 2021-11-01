@@ -24,16 +24,17 @@ function App() {
   }, []);
 
   const pairs = () => {
-    return context.to.reduce((ax, v, i) => {
+    return context.to.flatMap(to => context.payloads.map(payload => ({payload, to})))
+    .reduce((ax, v, i) => {
       const index = Math.trunc(i/2)
       ax[index] =  ax[index] || []
       ax[index].push(v)
       return ax
     }, [])
   }
-
+ 
   if(isPreview) {
-    const {shippedAt, yourName, recipientName, content, caremark, from, description} = context
+    const {shippedAt, yourName, recipientName, from} = context
     const shippedAtForDisplay = moment(shippedAt).format("YYYY.M.D")
     return (
       <>
@@ -55,10 +56,10 @@ function App() {
                                  senderName={yourName}
                                  whereToSend={from}
                                  recipientName={recipientName || "　"}
-                                 whereToReceive={pair[0]}
-                                 content={content}
-                                 caremark={caremark}
-                                 description={description} />
+                                 whereToReceive={pair[0].to}
+                                 content={pair[0].payload.content}
+                                 caremark={pair[0].payload.caremark}
+                                 description={pair[0].payload.description} />
                 </article>
                 <hr className="dotted-line" />
                 {
@@ -68,10 +69,10 @@ function App() {
                                  senderName={yourName}
                                  whereToSend={from}
                                  recipientName={recipientName || "　"}
-                                 whereToReceive={pair[1]}
-                                 content={content}
-                                 caremark={caremark}
-                                 description={description} />
+                                 whereToReceive={pair[1].to}
+                                 content={pair[1].payload.content}
+                                 caremark={pair[1].payload.caremark}
+                                 description={pair[1].payload.description} />
                 </article>
                 }
               </section>
