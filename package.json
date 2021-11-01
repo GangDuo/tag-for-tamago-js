@@ -12,7 +12,7 @@
     "@testing-library/user-event": "^7.1.2",
     "date-fns": "^2.25.0",
     "formik": "^2.2.9",
-    "formik-material-ui": "^2.0.0-beta.1",
+    "formik-material-ui": "^3.0.1",
     "formik-material-ui-pickers": "0.0.6",
     "moment": "^2.29.1",
     "react": "^17.0.2",
