@@ -276,7 +276,14 @@ const TamagoStickerGenForm = (props) => {
                             }}>
                               <AddIcon />
                             </Fab>
-                            <Fab color="secondary" aria-label="remove" onClick={() => remove(index)}>
+                            <Fab color="secondary" aria-label="remove" onClick={() => {
+                              if(tabCnt === 1) {
+                                return
+                              }
+                              remove(index)
+                              setTabIndex(0);
+                              setTabCnt((prevCount) => prevCount - 1);
+                            }}>
                               <RemoveIcon />
                             </Fab>
                           </Grid>
