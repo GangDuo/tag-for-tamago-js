@@ -16,6 +16,9 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
 
 const destinations = [
   "本社","前橋本店","伊勢崎店","上中居店","上並榎店","太田飯塚店","熊谷肥塚店",
@@ -173,33 +176,10 @@ const TamagoStickerGenForm = (props) => {
                             <Tab key={index} label={`${index + 1}`} />
                           ))}
                       </Tabs>
-                      <Button
-                        onClick={() => {
-                          push({
-                            content: "その他",
-                            description: "",
-                            caremark: [],
-                          });
-                          setTabIndex((prevCount) => prevCount + 1);
-                          setTabCnt((prevCount) => prevCount + 1);
-                        }}
-                      >
-                        +
-                      </Button>
                     </Grid>
                     {values.payloads.length > 0 &&
                       values.payloads.map((payload, index) => (
                         <TabPanel value={tabIndex} index={index} key={index}>
-                          <div className="col">
-                            <button
-                              type="button"
-                              className="secondary"
-                              onClick={() => remove(index)}
-                            >
-                              X
-                            </button>
-                          </div>
-
                           <Grid
                             container
                             direction="row"
@@ -278,6 +258,29 @@ const TamagoStickerGenForm = (props) => {
                               variant="outlined"
                             />
                           </Grid>
+  
+                          <Grid
+                            container
+                            direction="row"
+                            justifyContent="flex-end"
+                            alignItems="flex-start"
+                          >
+                            <Fab color="primary" aria-label="add" onClick={() => {
+                              push({
+                                content: "その他",
+                                description: "",
+                                caremark: [],
+                              });
+                              setTabIndex((prevCount) => prevCount + 1);
+                              setTabCnt((prevCount) => prevCount + 1);
+                            }}>
+                              <AddIcon />
+                            </Fab>
+                            <Fab color="secondary" aria-label="remove" onClick={() => remove(index)}>
+                              <RemoveIcon />
+                            </Fab>
+                          </Grid>
+
                         </TabPanel>
                       ))}
                   </div>
