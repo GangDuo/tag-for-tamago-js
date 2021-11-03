@@ -96,7 +96,6 @@ function App() {
             yourName: '',
             recipientName: '',
             from: '本社',
-            content: 'その他',
             payloads: [
               {
                 content: "その他",
