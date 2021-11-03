@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "30a7f9cc55cbf9a058a4ea25ccfe2342",
+    "revision": "f4c68009f93013c42a056c93d0bd0ec8",
     "url": "/tag-for-tamago-js/index.html"
   },
   {
-    "revision": "84c58cc11dfc34ce9de8",
+    "revision": "494c34b8a2d82248a1a3",
     "url": "/tag-for-tamago-js/static/css/2.cbee05ea.chunk.css"
   },
   {
-    "revision": "6f553b7d23bc73fece9e",
-    "url": "/tag-for-tamago-js/static/css/main.cfc368e8.chunk.css"
+    "revision": "805bf4574010abde8ab7",
+    "url": "/tag-for-tamago-js/static/css/main.abc12af0.chunk.css"
   },
   {
-    "revision": "84c58cc11dfc34ce9de8",
-    "url": "/tag-for-tamago-js/static/js/2.c1e6a3c1.chunk.js"
+    "revision": "494c34b8a2d82248a1a3",
+    "url": "/tag-for-tamago-js/static/js/2.15d09478.chunk.js"
   },
   {
-    "revision": "fd56044fbab90a74509299bbf81211c5",
-    "url": "/tag-for-tamago-js/static/js/2.c1e6a3c1.chunk.js.LICENSE"
+    "revision": "41fbb0b0a90da8178f4961de1d548841",
+    "url": "/tag-for-tamago-js/static/js/2.15d09478.chunk.js.LICENSE"
   },
   {
-    "revision": "6f553b7d23bc73fece9e",
-    "url": "/tag-for-tamago-js/static/js/main.5c1c0059.chunk.js"
+    "revision": "805bf4574010abde8ab7",
+    "url": "/tag-for-tamago-js/static/js/main.03d9b3ab.chunk.js"
   },
   {
     "revision": "2714113cf3a28d68805f",
