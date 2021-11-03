@@ -46,7 +46,7 @@
     ]
   },
   "devDependencies": {
-    "customize-cra": "^0.9.1",
+    "customize-cra": "^1.0.0",
     "gh-pages": "^2.2.0",
     "react-app-rewired": "^2.1.8"
   },
