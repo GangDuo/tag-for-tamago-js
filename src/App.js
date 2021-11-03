@@ -24,17 +24,20 @@ function App() {
   }, []);
 
   const pairs = () => {
-    return context.to.reduce((ax, v, i) => {
+    return context.to.flatMap(to => context.payloads.map(payload => ({...payload, to})))
+    .reduce((ax, v, i) => {
       const index = Math.trunc(i/2)
+      const currentPackage = i % context.payloads.length + 1
       ax[index] =  ax[index] || []
-      ax[index].push(v)
+      ax[index].push({currentPackage, ...v})
       return ax
     }, [])
   }
-
+ 
   if(isPreview) {
-    const {shippedAt, yourName, recipientName, content, caremark, from, description} = context
+    const {shippedAt, yourName, recipientName, from} = context
     const shippedAtForDisplay = moment(shippedAt).format("YYYY.M.D")
+    const totalPackage = context.payloads.length
     return (
       <>
         <form>
@@ -55,10 +58,12 @@ function App() {
                                  senderName={yourName}
                                  whereToSend={from}
                                  recipientName={recipientName || "　"}
-                                 whereToReceive={pair[0]}
-                                 content={content}
-                                 caremark={caremark}
-                                 description={description} />
+                                 whereToReceive={pair[0].to}
+                                 content={pair[0].content}
+                                 caremark={pair[0].caremark}
+                                 description={pair[0].description}
+                                 currentPackage={pair[0].currentPackage}
+                                 totalPackage={totalPackage} />
                 </article>
                 <hr className="dotted-line" />
                 {
@@ -68,10 +73,12 @@ function App() {
                                  senderName={yourName}
                                  whereToSend={from}
                                  recipientName={recipientName || "　"}
-                                 whereToReceive={pair[1]}
-                                 content={content}
-                                 caremark={caremark}
-                                 description={description} />
+                                 whereToReceive={pair[1].to}
+                                 content={pair[1].content}
+                                 caremark={pair[1].caremark}
+                                 description={pair[1].description}
+                                 currentPackage={pair[1].currentPackage}
+                                 totalPackage={totalPackage} />
                 </article>
                 }
               </section>
@@ -89,7 +96,13 @@ function App() {
             yourName: '',
             recipientName: '',
             from: '本社',
-            content: 'その他'
+            payloads: [
+              {
+                content: "その他",
+                description: "",
+                caremark: [],
+              },
+            ]
           }}
           handleSubmit={(values, actions) => {
             console.log(JSON.stringify(values, null, 2));
