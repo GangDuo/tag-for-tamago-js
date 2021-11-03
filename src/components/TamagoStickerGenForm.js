@@ -159,24 +159,6 @@ const TamagoStickerGenForm = (props) => {
               <FieldArray name="payloads">
                 {({ insert, remove, push }) => (
                   <div>
-                    <Grid
-                      container
-                      direction="row"
-                      justifyContent="space-between"
-                      alignItems="flex-start"
-                    >
-                      <Tabs
-                        value={tabIndex}
-                        onChange={handleChangeTabIndex}
-                        scrollButtons="auto"
-                        variant="scrollable"
-                      >
-                        {values.payloads.length > 0 &&
-                          values.payloads.map((payload, index) => (
-                            <Tab key={index} label={`${index + 1}`} />
-                          ))}
-                      </Tabs>
-                    </Grid>
                     {values.payloads.length > 0 &&
                       values.payloads.map((payload, index) => (
                         <TabPanel value={tabIndex} index={index} key={index}>
@@ -290,6 +272,25 @@ const TamagoStickerGenForm = (props) => {
 
                         </TabPanel>
                       ))}
+
+                    <Grid
+                      container
+                      direction="row"
+                      justifyContent="space-between"
+                      alignItems="flex-start"
+                    >
+                      <Tabs
+                        value={tabIndex}
+                        onChange={handleChangeTabIndex}
+                        scrollButtons="auto"
+                        variant="scrollable"
+                      >
+                        {values.payloads.length > 0 &&
+                          values.payloads.map((payload, index) => (
+                            <Tab key={index} label={`${index + 1}`} />
+                          ))}
+                      </Tabs>
+                    </Grid>
                   </div>
                 )}
               </FieldArray>
